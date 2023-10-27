@@ -3,20 +3,22 @@
 import 'package:flutter/material.dart';
 import 'package:hidable/hidable.dart';
 import 'package:newzfeedz/view/Home/homeScreen.dart';
+import 'package:newzfeedz/view/Search/Search.dart';
 
-class Example extends StatefulWidget {
-  const Example({Key? key}) : super(key: key);
+class BottomNavigator extends StatefulWidget {
+  const BottomNavigator({Key? key}) : super(key: key);
 
   @override
-  State<Example> createState() => _ExampleState();
+  State<BottomNavigator> createState() => _BottomNavigatorState();
 }
 
-class _ExampleState extends State<Example> {
+class _BottomNavigatorState extends State<BottomNavigator> {
   final colorsPath = [Colors.red, Colors.orangeAccent, Colors.orange, Colors.red];
 
   int index = 0;
   final List<Widget> _pages = [
-    HomeScreen()
+    HomeScreen(),
+    SearchScreen()
   ];
 
   // Create scroll controller that will be given to scrollable widget and hidable.

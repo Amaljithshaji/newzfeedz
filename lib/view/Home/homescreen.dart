@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:newzfeedz/view/Notification/NotificationScreen.dart';
+import 'package:newzfeedz/view/Search/Search.dart';
 
 
 import 'widgets/category.dart';
@@ -23,8 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {},
           ),
           actions: [
-              InkWell(onTap: () {}, child: Image.asset("assets/images/Icons (1).png")),
-            InkWell(onTap: () {}, child: Image.asset("assets/images/Icons.png")),
+              InkWell(onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen(),));
+              }, child: Image.asset("assets/images/Icons (1).png")),
+            InkWell(onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => NotifScreen(),));
+            }, child: Image.asset("assets/images/Icons.png")),
             SizedBox(width: 10,),
             InkWell(
                 onTap: () {},
