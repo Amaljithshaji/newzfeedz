@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:newzfeedz/controller/Controller.dart';
+import 'package:provider/provider.dart';
 
 import 'view/bottomNavigation/bottomNavigator.dart';
 //import 'view/Home/homescreen.dart';
@@ -12,8 +14,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp( 
-      home:  BottomNavigator(),
-      debugShowCheckedModeBanner: false,
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => Controller()),
+    ],
+      child: const MaterialApp( 
+        home:  BottomNavigator(),
+        debugShowCheckedModeBanner: false,
+      ),
     );}
 }

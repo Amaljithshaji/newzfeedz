@@ -40,6 +40,8 @@ dependencies:
   flutter_carousel_slider: ^1.1.0
   floating_frosted_bottom_bar: ^0.0.1
   hidable: ^1.0.6
+  provider: ^6.0.5
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

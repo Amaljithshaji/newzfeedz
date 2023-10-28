@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newzfeedz/view/Notification/NotificationScreen.dart';
 import 'package:newzfeedz/view/Search/Search.dart';
+import 'package:newzfeedz/view/profile/profile.dart';
 
 
 import 'widgets/category.dart';
@@ -33,7 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
             }, child: Image.asset("assets/images/Icons.png")),
             SizedBox(width: 10,),
             InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
+                },
                 child: Image.asset(
                   "assets/images/Vector.png",
                   width: 25,
@@ -61,44 +64,44 @@ class _HomeScreenState extends State<HomeScreen> {
           width: double.infinity,
           height: 500,
           color: Colors.black,
-          child: Category(),
+          child: Category(category: 'general',),
          ),
           Container(
           width: double.infinity,
           height: 500,
           color: Colors.black,
-          child: Category(),
+          child: Category(category: 'technology',),
           ),
          
           Container(
           width: double.infinity,
           height: 400,
           color: Colors.black,
-          child: Category(),
+          child: Category(category: 'Science',),
          ),
           Container(
           width: double.infinity,
           height: 500,
           color: Colors.black,
-          child: Category(),
+          child: Category(category: 'Sports',),
          ),
           Container(
           width: double.infinity,
           height: 500,
           color: Colors.black,
-          child: Category(),
+          child: Category(category: 'Health',),
          ),
           Container(
           width: double.infinity,
           height: 500,
           color: Colors.black,
-          child: Category(),
+          child: Category(category: 'Business',),
          ),
           Container(
           width: double.infinity,
           height: 500,
           color: Colors.black,
-          child: Category(),
+          child: Category(category: 'Entertainment',),
          ),
          
         ])

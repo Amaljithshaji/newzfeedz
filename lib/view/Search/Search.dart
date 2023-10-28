@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:newzfeedz/controller/Controller.dart';
+import 'package:provider/provider.dart';
 //import 'package:newzfeedz/view/Home/widgets/db.dart';
 
 import 'widgets/Recent.dart';
@@ -16,16 +18,18 @@ class _SearchScreenState extends State<SearchScreen> {
   bool isSelected = false;
   List<String> searchOptions = [
     'General'
-        'Tech',
+    'Tech',
     'Science',
     'Sports',
     'Health',
     'Business',
     'Entertainment',
   ];
+  
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: Colors.black,
       // appBar: AppBar(
@@ -131,7 +135,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ],
               ),
-              RecentNew(),
+              RecentNew(newsearch: _searchController.text,),
               SizedBox(
                 height: 20,
               ),
@@ -149,7 +153,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ],
               ),
-              RecentNew()
+              RecentNew(newsearch: _searchController.text,)
             ],
           ),
         ),
