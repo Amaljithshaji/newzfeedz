@@ -43,7 +43,7 @@ class _CategoryState extends State<Category> {
                 child: CarouselSlider.builder(
                     //  key: _sliderKey,
                     enableAutoSlider: true,
-                    autoSliderDelay: Duration(seconds: 3),
+                    autoSliderDelay: Duration(seconds: 10),
                     unlimitedMode: true,
                     // scrollPhysics: NeverScrollableScrollPhysics(),
                     slideBuilder: (index) {
@@ -62,7 +62,7 @@ class _CategoryState extends State<Category> {
                                 height: 300,
                               )),
                           Positioned(
-                              bottom: 80,
+                              bottom: 100,
                               left: 20,
                               child: Text(
                                 HomeProvider.responsedata?.articles?[index]
@@ -89,7 +89,16 @@ class _CategoryState extends State<Category> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
-                              ))
+                              ),
+                              
+                              ),
+                              Positioned(right: 10,bottom: 20,
+                                child: InkWell(onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(itemIndex: index,),
+                          )),
+                                  child: Image.asset('assets/images/Frame.png')),)
                         ],
                       );
                     },
@@ -133,24 +142,22 @@ class _CategoryState extends State<Category> {
                 itemBuilder: (context, index) => Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
+                  child: Container(
+                    width: double.infinity,
+                    height: 160,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0xff1E1E1E)),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15, top: 5),
+                          child: InkWell(
+                            onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailScreen(),
-                          ));
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 160,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Color(0xff1E1E1E)),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15, top: 5),
+                            builder: (context) => DetailScreen(itemIndex: index,),
+                          )),
                             child: Row(
                               children: [
                                 Container(
@@ -213,43 +220,43 @@ class _CategoryState extends State<Category> {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 80),
-                                  child: Text(
-                                    HomeProvider.responsedata?.articles?[index]
-                                        .publishedAt
-                                        .toString() ??
-                                    "date",
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400),
-                                  ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 80),
+                                child: Text(
+                                  HomeProvider.responsedata?.articles?[index]
+                                      .publishedAt
+                                      .toString() ??
+                                  "date",
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400),
                                 ),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.bookmark_border_outlined,
-                                      size: 20,
-                                      color: Colors.white,
-                                    )),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.more_vert,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ))
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.bookmark_border_outlined,
+                                    size: 20,
+                                    color: Colors.white,
+                                  )),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.more_vert,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ))
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),

@@ -7,6 +7,7 @@ import 'package:newzfeedz/models/Newsmodel.dart';
 class Controller with ChangeNotifier {
   bool isloading = false;
   Newmodel? responsedata;
+  int count =0;
   Future<dynamic> fetchdata({required String cate }) async {
     isloading = true;
     notifyListeners();
@@ -36,5 +37,8 @@ class Controller with ChangeNotifier {
     }
     isloading = false;
     notifyListeners();
+  }
+  Addcount(){
+    count++;
   }
 }

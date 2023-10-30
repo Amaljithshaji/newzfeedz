@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hidable/hidable.dart';
 import 'package:newzfeedz/view/Home/homeScreen.dart';
 import 'package:newzfeedz/view/Search/Search.dart';
+import 'package:newzfeedz/view/details/new.dart';
 import 'package:newzfeedz/view/profile/profile.dart';
 import 'package:newzfeedz/view/saved/saved.dart';
 
@@ -21,7 +22,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
   final List<Widget> _pages = [
     HomeScreen(),
     SearchScreen(),
-    SavedScreen(),
+   // Share(),
     ProfileScreen()
   ];
 
@@ -45,7 +46,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
         enableOpacityAnimation: true, // As default it's true
         child: BottomNavigationBar(
           selectedItemColor: Colors.white,
-          
+          backgroundColor: Colors.black,
           currentIndex: index,
           onTap: (i) => setState(() => index = i),
           items: bottomBarItems(),
@@ -70,11 +71,11 @@ class _BottomNavigatorState extends State<BottomNavigator> {
         icon: const Icon(Icons.explore_outlined, color: Colors.white),
         backgroundColor: Colors.black,
       ),
-      BottomNavigationBarItem(
-        label: 'Saved',
-        icon: const Icon(Icons.bookmark_border_outlined, color: Colors.white),
-        backgroundColor: Colors.black,
-      ),
+      // BottomNavigationBarItem(
+      //   label: 'Saved',
+      //   icon: const Icon(Icons.bookmark_border_outlined, color: Colors.white),
+      //   backgroundColor: Colors.black,
+      // ),
       BottomNavigationBarItem(
         label: 'Profile',
         icon: const Icon(Icons.person_outlined, color: Colors.white),
