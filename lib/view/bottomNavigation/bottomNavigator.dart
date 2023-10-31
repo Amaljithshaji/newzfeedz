@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:hidable/hidable.dart';
 import 'package:newzfeedz/view/Home/homeScreen.dart';
 import 'package:newzfeedz/view/Search/Search.dart';
-import 'package:newzfeedz/view/details/new.dart';
+//import 'package:newzfeedz/view/details/new.dart';
 import 'package:newzfeedz/view/profile/profile.dart';
-import 'package:newzfeedz/view/saved/saved.dart';
+//import 'package:newzfeedz/view/saved/saved.dart';
 
 class BottomNavigator extends StatefulWidget {
   const BottomNavigator({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
     HomeScreen(),
     SearchScreen(),
    // Share(),
-    ProfileScreen()
+   // ProfileScreen()
   ];
 
   // Create scroll controller that will be given to scrollable widget and hidable.
@@ -76,11 +76,11 @@ class _BottomNavigatorState extends State<BottomNavigator> {
       //   icon: const Icon(Icons.bookmark_border_outlined, color: Colors.white),
       //   backgroundColor: Colors.black,
       // ),
-      BottomNavigationBarItem(
-        label: 'Profile',
-        icon: const Icon(Icons.person_outlined, color: Colors.white),
-        backgroundColor: Colors.black,
-      ),
+      // BottomNavigationBarItem(
+      //   label: 'Profile',
+      //   icon: const Icon(Icons.person_outlined, color: Colors.white),
+      //   backgroundColor: Colors.black,
+    //  ),
     ];
   }
 }
