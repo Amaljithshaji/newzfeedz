@@ -5,7 +5,7 @@ import 'package:hidable/hidable.dart';
 import 'package:newzfeedz/view/Home/homeScreen.dart';
 import 'package:newzfeedz/view/Search/Search.dart';
 //import 'package:newzfeedz/view/details/new.dart';
-import 'package:newzfeedz/view/profile/profile.dart';
+//import 'package:newzfeedz/view/profile/profile.dart';
 //import 'package:newzfeedz/view/saved/saved.dart';
 
 class BottomNavigator extends StatefulWidget {

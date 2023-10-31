@@ -3,6 +3,7 @@ import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:newzfeedz/controller/Controller.dart';
 import 'package:newzfeedz/view/Home/widgets/db.dart';
 import 'package:newzfeedz/view/details/detailscreen.dart';
+import 'package:newzfeedz/view/details/seeAll.dart';
 import 'package:provider/provider.dart';
 
 class Category extends StatefulWidget {
@@ -37,9 +38,9 @@ class _CategoryState extends State<Category> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 20, top: 10),
+              padding: const EdgeInsets.only(bottom: 10, top: 10),
               child: Container(
-                height: 300,
+                height: 285,
                 child: CarouselSlider.builder(
                     //  key: _sliderKey,
                     enableAutoSlider: true,
@@ -106,7 +107,7 @@ class _CategoryState extends State<Category> {
                     slideIndicator: CircularSlideIndicator(
                       indicatorRadius: 3,
                       itemSpacing: 10,
-                      padding: EdgeInsets.only(bottom: 12),
+                      padding: EdgeInsets.only(bottom: 5),
                     ),
                     itemCount: 5),
               ),
@@ -121,12 +122,16 @@ class _CategoryState extends State<Category> {
                       fontSize: 20,
                       fontWeight: FontWeight.w800),
                 ),
-                Text(
-                  'See all',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400),
+                TextButton(onPressed: (){
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => SeeAll(category: widget.category),));
+                },
+                  child: Text(
+                    'See all',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400),
+                  ),
                 )
               ],
             ),

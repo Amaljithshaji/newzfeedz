@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:newzfeedz/view/Notification/NotificationScreen.dart';
 import 'package:newzfeedz/view/Search/Search.dart';
 import 'package:newzfeedz/view/profile/profile.dart';
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
-          title: Text('Newz Feedz'),
+          title: Text('Newz Feedz',style: GoogleFonts.aDLaMDisplay()),
           actions: [
               InkWell(onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen(),));

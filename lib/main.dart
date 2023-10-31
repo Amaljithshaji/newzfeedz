@@ -3,6 +3,7 @@ import 'package:newzfeedz/controller/Controller.dart';
 import 'package:provider/provider.dart';
 
 import 'view/bottomNavigation/bottomNavigator.dart';
+import 'view/splash/splash.dart';
 //import 'view/Home/homescreen.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (_) => Controller()),
     ],
       child: const MaterialApp( 
-        home:  BottomNavigator(),
+        home:  Splash(),
         debugShowCheckedModeBanner: false,
       ),
     );}
