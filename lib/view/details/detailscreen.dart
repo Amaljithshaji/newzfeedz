@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../bottomNavigation/bottomNavigator.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key,required this.itemIndex});
+  const DetailScreen({super.key,required this.itemIndex,});
   final itemIndex;
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -21,6 +21,25 @@ class _DetailScreenState extends State<DetailScreen> {
     final detailsController = Provider.of<Controller>(context);
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          leading: IconButton(
+                  onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavigator(),));
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.white,
+                  )),
+                  title: Text('Details',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
+                  centerTitle: true,
+                  actions: [
+                     IconButton(onPressed: (){
+                    Share.share(detailsController.responsedata?.articles?[widget.itemIndex].url.toString()??"www.google.com");
+                    }, icon: Icon(Icons.share_outlined,color: Colors.white,)),
+                    
+                  ],
+        ),
         floatingActionButton: FloatingActionButton.extended(onPressed: (){
           launchUrl(Uri.parse(detailsController.responsedata?.articles?[widget.itemIndex].url.toString()??''),
           mode: LaunchMode.inAppWebView
@@ -32,39 +51,25 @@ class _DetailScreenState extends State<DetailScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 350,
-                    color: Colors.amber,
-                    child: Image.network(detailsController.responsedata?.articles?[widget.itemIndex].urlToImage.toString()??'',
-                    fit: BoxFit.cover,),
-                  ),
-                  Row(mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                    IconButton(
-                  onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavigator(),));
-                  },
-                  icon: Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.white,
-                  )),
-                  SizedBox(width: 120,),
-                  Center(child: Text('Details',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),)),
-                  SizedBox(width: 80,),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.bookmark_border_outlined,
-                      color: Colors.white,
-                    )),
-                    IconButton(onPressed: (){
-                    Share.share(detailsController.responsedata?.articles?[widget.itemIndex].url.toString()??"www.google.com");
-                    }, icon: Icon(Icons.share_outlined,color: Colors.white,))
-                  ],),
-                ],
+              Container(
+                width: double.infinity,
+                height: 350,
+                color: Colors.amber,
+                child: detailsController
+                                    .responsedata?.articles?[widget.itemIndex].urlToImage
+                                     == null ? 
+                          Image.network('https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
+                           fit: BoxFit.fill,
+                            width: double.infinity,
+                            height: 300,): Image.network(
+                            detailsController
+                                    .responsedata?.articles?[widget.itemIndex].urlToImage
+                                    .toString()??
+                                '',
+                            fit: BoxFit.fill,
+                            width: double.infinity,
+                            height: 300,
+                          ),
               ),
               SizedBox(height: 10,),
               // Padding(
@@ -113,7 +118,10 @@ class _DetailScreenState extends State<DetailScreen> {
                   width: double.infinity,
                   height: 800,
                   color: Colors.black,
-                  child: Text(detailsController.responsedata?.articles?[widget.itemIndex].description.toString()??'news',style: TextStyle(
+                  child: detailsController
+                                        .responsedata?.articles?[widget.itemIndex].urlToImage
+                                         == null ? Text(''):
+                  Text(detailsController.responsedata?.articles?[widget.itemIndex].description.toString()??'news',style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
                     fontWeight: FontWeight.w300,

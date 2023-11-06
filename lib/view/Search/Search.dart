@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:newzfeedz/controller/Controller.dart';
 import 'package:provider/provider.dart';
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:newzfeedz/view/Home/widgets/db.dart';
 
 import '../details/detailscreen.dart';
@@ -35,6 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final _Search = Provider.of<Controller>(context);
+    var SelectValue;
     return Scaffold(
       backgroundColor: Colors.black,
       // appBar: AppBar(
@@ -95,12 +98,10 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: Colors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.bold)),
-                  Text(
-                    'view more',
-                    style: TextStyle(color: Color(0xffB8B8B8), fontSize: 16),
-                  ),
+                  
                 ],
               ),
+              SizedBox(height: 20,),
             Container(
               width: double.infinity,
               height: 600,
@@ -145,7 +146,12 @@ class _SearchScreenState extends State<SearchScreen> {
                                   child: ClipRRect(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
-                                    child: Image.network(
+                                    child:_Search
+                                        .responsedata?.articles?[index].urlToImage
+                                         == null ?   Image.network('https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
+                           fit: BoxFit.fill,
+                            width: double.infinity,
+                            height: 300,): Image.network(
                                       _Search.responsedata?.articles?[index]
                                               .urlToImage
                                               .toString() ??
@@ -178,7 +184,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                         width: 230,
                                         height: 70,
                                         // color: Colors.amber,
-                                        child: Text(
+                                        child:_Search
+                                        .responsedata?.articles?[index].urlToImage
+                                         == null ? Text('No data found',style: TextStyle(color: Colors.white),): Text(
                                           _Search.responsedata
                                                   ?.articles?[index].description
                                                   .toString() ??
@@ -213,20 +221,62 @@ class _SearchScreenState extends State<SearchScreen> {
                                         fontWeight: FontWeight.w400),
                                   ),
                                 ),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.bookmark_border_outlined,
-                                      size: 20,
-                                      color: Colors.white,
-                                    )),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.more_vert,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ))
+                                
+                                DropdownButtonHideUnderline(
+                                      child: DropdownButton(
+                                        value: SelectValue,
+                                        elevation: 0,
+                                        iconEnabledColor: Colors.black,
+                                        focusColor: Colors.black,
+                                        dropdownColor: Color.fromARGB(255, 21, 21, 21),
+                                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        
+                                        enableFeedback: true,
+                                        items: [
+                                          DropdownMenuItem<String>(
+                                            enabled: false,
+                                            child: TextButton(
+                                              onPressed: () {
+                                                launchUrl(
+                                                    Uri.parse(_Search
+                                                            .responsedata
+                                                            ?.articles?[index]
+                                                            .url
+                                                            .toString() ??
+                                                        ''),
+                                                    mode: LaunchMode
+                                                        .inAppWebView);
+                                              },
+                                              child: Text('Read more', style: TextStyle(color: Colors.white),),
+                                            ),
+                                            value: 'read more',
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            child: TextButton(
+                                              onPressed: () {
+                                                Share.share(_Search
+                                                        .responsedata
+                                                        ?.articles?[index]
+                                                        .url
+                                                        .toString() ??
+                                                    "www.google.com");
+                                              },
+                                              child: Text('Share', style: TextStyle(color: Colors.white),),
+                                            ),
+                                            value: 'Share',
+                                          )
+                                        ],
+                                        onChanged: (newValue) {
+                                          SelectValue = newValue;
+                                          setState(() {});
+                                        },
+                                        icon: Icon(
+                                          Icons.more_vert,
+                                          color: Colors.white,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    )
                               ],
                             ),
                           )

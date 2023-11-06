@@ -76,9 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
               InkWell(onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen(),));
               }, child: Image.asset("assets/images/Icons (1).png")),
-            InkWell(onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => NotifScreen(),));
-            }, child: Image.asset("assets/images/Icons.png")),
+            // InkWell(onTap: () {
+            //   Navigator.push(context, MaterialPageRoute(builder: (context) => NotifScreen(),));
+            // }, child: Image.asset("assets/images/Icons.png")),
             SizedBox(width: 10,),
             // InkWell(
             //     onTap: () {
@@ -106,7 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Tab(text: 'Entertainment',),
           ]),
         ),
-        body: TabBarView(children: [
+        body: TabBarView(physics: NeverScrollableScrollPhysics(),
+          children: [
          Container(
           width: double.infinity,
           height: 500,
@@ -164,20 +165,18 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
-                  width: 128.0,
-                  height: 128.0,
+                  width: 180.0,
+                  height: 100.0,
                   margin: const EdgeInsets.only(
                     top: 24.0,
                     bottom: 64.0,
                   ),
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                    color: Colors.black26,
-                    shape: BoxShape.circle,
+                    color: Colors.black,
+                    shape: BoxShape.rectangle,
                   ),
-                  child: Image.asset(
-                    'assets/images/Vector.png',
-                  ),
+                  child:Center(child: Text('Newz Feedz ',style: GoogleFonts.aDLaMDisplay( fontWeight: FontWeight.bold, fontSize: 28,color: Colors.red,))),
                 ),
                 ListTile(
                   onTap: () {

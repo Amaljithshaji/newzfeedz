@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:newzfeedz/controller/Controller.dart';
 import 'package:newzfeedz/view/Notification/NotificationScreen.dart';
 import 'package:provider/provider.dart';
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Search/Search.dart';
 import '../bottomNavigation/bottomNavigator.dart';
@@ -25,6 +27,7 @@ class _SeeAllState extends State<SeeAll> {
 
   @override
   Widget build(BuildContext context) {
+    var SelectValue;
     final see_all = Provider.of<Controller>(
       context,
     );
@@ -91,32 +94,34 @@ class _SeeAllState extends State<SeeAll> {
                           color: Colors.red,
                         ),
                       )
-                    : ListView.builder(
+                    :RefreshIndicator(onRefresh: ()async{
+      await see_all.fetchdata(cate: widget.category);
+     },
+     color: Colors.red,
+                 child:    ListView.builder(
                         itemCount: see_all.responsedata?.articles?.length,
                         itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 5),
-                          child: InkWell(
-                            onDoubleTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DetailScreen(
-                                      itemIndex: index,
-                                    ),
-                                  ));
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 160,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Color(0xff1E1E1E)),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 15, top: 5),
+                          child: Container(
+                            width: double.infinity,
+                            height: 160,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Color(0xff1E1E1E)),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 15, top: 5),
+                                  child: InkWell(
+                                    onTap: (){
+                                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(itemIndex: index,),
+                          ));
+                                    },
                                     child: Row(
                                       children: [
                                         Container(
@@ -130,7 +135,13 @@ class _SeeAllState extends State<SeeAll> {
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10)),
-                                            child: Image.network(
+                                            child:see_all
+                                        .responsedata?.articles?[index].urlToImage
+                                         == null ?  Image.network('https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
+                                                               fit: BoxFit.fill,
+                                                                width: double.infinity,
+                                                                height: 300,):
+                                             Image.network(
                                               see_all
                                                       .responsedata
                                                       ?.articles?[index]
@@ -190,52 +201,95 @@ class _SeeAllState extends State<SeeAll> {
                                       ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 80),
-                                          child: Text(
-                                            see_all
-                                                    .responsedata
-                                                    ?.articles?[index]
-                                                    .publishedAt
-                                                    ?.toLocal()
-                                                    .toString() ??
-                                                "date",
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400),
-                                          ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 80),
+                                        child: Text(
+                                          see_all
+                                                  .responsedata
+                                                  ?.articles?[index]
+                                                  .publishedAt
+                                                  ?.toLocal()
+                                                  .toString() ??
+                                              "date",
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400),
                                         ),
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.bookmark_border_outlined,
-                                              size: 20,
-                                              color: Colors.white,
-                                            )),
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.more_vert,
-                                              color: Colors.white,
-                                              size: 20,
-                                            ))
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
+                                      ),
+                                     
+                                     DropdownButtonHideUnderline(
+                                      child: DropdownButton(
+                                        value: SelectValue,
+                                        elevation: 0,
+                                        iconEnabledColor: Colors.black,
+                                        focusColor: Colors.black,
+                                        dropdownColor: Color.fromARGB(255, 21, 21, 21),
+                                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        
+                                        enableFeedback: true,
+                                        items: [
+                                          DropdownMenuItem<String>(
+                                            enabled: false,
+                                            child: TextButton(
+                                              onPressed: () {
+                                                launchUrl(
+                                                    Uri.parse(see_all
+                                                            .responsedata
+                                                            ?.articles?[index]
+                                                            .url
+                                                            .toString() ??
+                                                        ''),
+                                                    mode: LaunchMode
+                                                        .inAppWebView);
+                                              },
+                                              child: Text('Read more', style: TextStyle(color: Colors.white),),
+                                            ),
+                                            value: 'read more',
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            child: TextButton(
+                                              onPressed: () {
+                                                Share.share(see_all
+                                                        .responsedata
+                                                        ?.articles?[index]
+                                                        .url
+                                                        .toString() ??
+                                                    "www.google.com");
+                                              },
+                                              child: Text('Share', style: TextStyle(color: Colors.white),),
+                                            ),
+                                            value: 'Share',
+                                          )
+                                        ],
+                                        onChanged: (newValue) {
+                                          SelectValue = newValue;
+                                          setState(() {});
+                                        },
+                                        icon: Icon(
+                                          Icons.more_vert,
+                                          color: Colors.white,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    )
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ),
                       ),
+              )
               )
             ],
           ),

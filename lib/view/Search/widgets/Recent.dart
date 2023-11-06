@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/Controller.dart';
-import '../../Home/widgets/db.dart';
+//import '../../Home/widgets/db.dart';
 
 class RecentNew extends StatefulWidget {
   const RecentNew({super.key, required this.newsearch});
@@ -51,11 +51,17 @@ class _RecentNewState extends State<RecentNew> {
                   height: 115,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(7),
-                      child: Image.network(
+                      child:_Search_Controller
+                                        .responsedata?.articles?[index].urlToImage
+                                         == null ?  Image.network('https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
+                               fit: BoxFit.fill,
+                                width: double.infinity,
+                                height: 300,):
+                       Image.network(
                         _Search_Controller
                                 .responsedata?.articles?[index].urlToImage
                                 .toString() ??
-                            Glist[index],
+                            '',
                         fit: BoxFit.fill,
                       ))),
                       SizedBox(height: 10,),
