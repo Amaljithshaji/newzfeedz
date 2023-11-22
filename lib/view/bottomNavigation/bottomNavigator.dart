@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:hidable/hidable.dart';
+//import 'package:hidable/hidable.dart';
 import 'package:newzfeedz/view/Home/homeScreen.dart';
 import 'package:newzfeedz/view/Search/Search.dart';
 //import 'package:newzfeedz/view/details/new.dart';
@@ -9,15 +9,13 @@ import 'package:newzfeedz/view/Search/Search.dart';
 //import 'package:newzfeedz/view/saved/saved.dart';
 
 class BottomNavigator extends StatefulWidget {
-  const BottomNavigator({Key? key}) : super(key: key);
+  const BottomNavigator({super.key});
 
   @override
   State<BottomNavigator> createState() => _BottomNavigatorState();
 }
 
-class _BottomNavigatorState extends State<BottomNavigator> {
-  final colorsPath = [Colors.red, Colors.orangeAccent, Colors.orange, Colors.red];
-
+class _BottomNavigatorState extends State<BottomNavigator> with TickerProviderStateMixin {
   int index = 0;
   final List<Widget> _pages = [
     HomeScreen(),
@@ -25,63 +23,49 @@ class _BottomNavigatorState extends State<BottomNavigator> {
    // Share(),
    // ProfileScreen()
   ];
-
-  // Create scroll controller that will be given to scrollable widget and hidable.
-  final ScrollController scrollController = ScrollController();
-
   @override
   Widget build(BuildContext context) {
+    
+    // var anim = AnimationController(
+    //   vsync: this,
+    //   value: 1,
+    //   duration: const Duration(milliseconds: 500),
+    //);
     return Scaffold(
-      /// We've wrapped [AppBar] with [Hidable].
-      /// So, now, our [AppBar] supports scroll to hide feature.
-     
-
-      /// Scrollable widget of main widget
+      extendBody: true,
       body: _pages[index],
-
-      /// We've wrapped [BottomNavigationBar] with [Hidable].
-      /// So, now, our [BottomNavigationBar] supports scroll to hide feature.
-      bottomNavigationBar: Hidable(
-        controller: scrollController,
-        enableOpacityAnimation: true, // As default it's true
-        child: BottomNavigationBar(
-          selectedItemColor: Colors.white,
-          backgroundColor: Colors.black,
-          currentIndex: index,
-          onTap: (i) => setState(() => index = i),
-          items: bottomBarItems(),
+      bottomNavigationBar:Container(
+        width: 300,
+        height: 100,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30)
         ),
-      ),
-
-      /// We've wrapped [FloatingActionButton] with [Hidable].
-      /// So, now, our [FloatingActionButton] supports scroll to hide feature.
-     
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: BottomNavigationBar(
+              onTap: (i) => setState(() => index = i),
+              currentIndex: index,
+               backgroundColor: Colors.black,
+               selectedItemColor: Colors.white ,
+               type: BottomNavigationBarType.shifting,
+               
+               
+              items:
+             [
+              BottomNavigationBarItem( icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.black,),
+              BottomNavigationBarItem( icon: Icon(Icons.explore),label: 'Explore',
+              backgroundColor:Colors.black, ),
+              
+            
+              ],),
+          ),
+        ),
+      )
     );
-  }
-
-  List<BottomNavigationBarItem> bottomBarItems() {
-    return [
-      BottomNavigationBarItem(
-        label: 'Feed',
-        icon: const Icon(Icons.feed_outlined, color: Colors.white),
-        backgroundColor: Colors.black,
-      ),
-      BottomNavigationBarItem(
-        label: 'Explore',
-        icon: const Icon(Icons.explore_outlined, color: Colors.white),
-        backgroundColor: Colors.black,
-      ),
-      // BottomNavigationBarItem(
-      //   label: 'Saved',
-      //   icon: const Icon(Icons.bookmark_border_outlined, color: Colors.white),
-      //   backgroundColor: Colors.black,
-      // ),
-      // BottomNavigationBarItem(
-      //   label: 'Profile',
-      //   icon: const Icon(Icons.person_outlined, color: Colors.white),
-      //   backgroundColor: Colors.black,
-    //  ),
-    ];
   }
 }
 

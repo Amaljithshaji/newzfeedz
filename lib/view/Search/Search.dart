@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 //import 'package:newzfeedz/view/Home/widgets/db.dart';
 
 import '../details/detailscreen.dart';
-import 'widgets/Recent.dart';
+//import 'widgets/Recent.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -101,7 +101,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   
                 ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 10,),
             Container(
               width: double.infinity,
               height: 600,
@@ -116,24 +116,22 @@ class _SearchScreenState extends State<SearchScreen> {
                  Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                  child: InkWell(
-                    onDoubleTap: () {
-                      Navigator.push(
+                  child: Container(
+                    width: double.infinity,
+                    height: 170,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0xff1E1E1E)),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15, top: 5),
+                          child: InkWell(
+                            onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => DetailScreen(itemIndex: index,),
-                          ));
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 160,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Color(0xff1E1E1E)),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15, top: 5),
+                          )),
                             child: Row(
                               children: [
                                 Container(
@@ -141,7 +139,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   height: 100,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Colors.indigo,
+                                    color: Color(0xff1E1E1E),
                                   ),
                                   child: ClipRRect(
                                     borderRadius:
@@ -149,7 +147,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     child:_Search
                                         .responsedata?.articles?[index].urlToImage
                                          == null ?   Image.network('https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
-                           fit: BoxFit.fill,
+                                                   fit: BoxFit.fill,
                             width: double.infinity,
                             height: 300,): Image.network(
                                       _Search.responsedata?.articles?[index]
@@ -182,13 +180,13 @@ class _SearchScreenState extends State<SearchScreen> {
                                       ),
                                       Container(
                                         width: 230,
-                                        height: 70,
+                                        height: 80,
                                         // color: Colors.amber,
                                         child:_Search
                                         .responsedata?.articles?[index].urlToImage
                                          == null ? Text('No data found',style: TextStyle(color: Colors.white),): Text(
                                           _Search.responsedata
-                                                  ?.articles?[index].description
+                                                  ?.articles?[index].title
                                                   .toString() ??
                                               "no data",
                                           style: TextStyle(
@@ -203,85 +201,86 @@ class _SearchScreenState extends State<SearchScreen> {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 80),
-                                  child: Text(
-                                    _Search.responsedata?.articles?[index]
-                                        .publishedAt?.toLocal()
-                                        .toString() ??
-                                    "date",
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400),
-                                  ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 70),
+                                child: Text(
+                                  _Search.responsedata
+                                                ?.articles?[index].publishedAt
+                                                .toString() ??
+                                            "no data",
+                                 
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400),
                                 ),
-                                
-                                DropdownButtonHideUnderline(
-                                      child: DropdownButton(
-                                        value: SelectValue,
-                                        elevation: 0,
-                                        iconEnabledColor: Colors.black,
-                                        focusColor: Colors.black,
-                                        dropdownColor: Color.fromARGB(255, 21, 21, 21),
-                                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        
-                                        enableFeedback: true,
-                                        items: [
-                                          DropdownMenuItem<String>(
-                                            enabled: false,
-                                            child: TextButton(
-                                              onPressed: () {
-                                                launchUrl(
-                                                    Uri.parse(_Search
-                                                            .responsedata
-                                                            ?.articles?[index]
-                                                            .url
-                                                            .toString() ??
-                                                        ''),
-                                                    mode: LaunchMode
-                                                        .inAppWebView);
-                                              },
-                                              child: Text('Read more', style: TextStyle(color: Colors.white),),
-                                            ),
-                                            value: 'read more',
+                              ),
+                              
+                              DropdownButtonHideUnderline(
+                                    child: DropdownButton(
+                                      value: SelectValue,
+                                      elevation: 0,
+                                      iconEnabledColor: Colors.black,
+                                      focusColor: Colors.black,
+                                      dropdownColor: Color.fromARGB(255, 21, 21, 21),
+                                       borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      
+                                      enableFeedback: true,
+                                      items: [
+                                        DropdownMenuItem<String>(
+                                          enabled: false,
+                                          child: TextButton(
+                                            onPressed: () {
+                                              launchUrl(
+                                                  Uri.parse(_Search
+                                                          .responsedata
+                                                          ?.articles?[index]
+                                                          .url
+                                                          .toString() ??
+                                                      ''),
+                                                  mode: LaunchMode
+                                                      .inAppWebView);
+                                            },
+                                            child: Text('Read more', style: TextStyle(color: Colors.white),),
                                           ),
-                                          DropdownMenuItem<String>(
-                                            child: TextButton(
-                                              onPressed: () {
-                                                Share.share(_Search
-                                                        .responsedata
-                                                        ?.articles?[index]
-                                                        .url
-                                                        .toString() ??
-                                                    "www.google.com");
-                                              },
-                                              child: Text('Share', style: TextStyle(color: Colors.white),),
-                                            ),
-                                            value: 'Share',
-                                          )
-                                        ],
-                                        onChanged: (newValue) {
-                                          SelectValue = newValue;
-                                          setState(() {});
-                                        },
-                                        icon: Icon(
-                                          Icons.more_vert,
-                                          color: Colors.white,
-                                          size: 20,
+                                          value: 'read more',
                                         ),
+                                        DropdownMenuItem<String>(
+                                          child: TextButton(
+                                            onPressed: () {
+                                              Share.share(_Search
+                                                      .responsedata
+                                                      ?.articles?[index]
+                                                      .url
+                                                      .toString() ??
+                                                  "www.google.com");
+                                            },
+                                            child: Text('Share', style: TextStyle(color: Colors.white),),
+                                          ),
+                                          value: 'Share',
+                                        )
+                                      ],
+                                      onChanged: (newValue) {
+                                        SelectValue = newValue;
+                                        setState(() {});
+                                      },
+                                      icon: Icon(
+                                        Icons.more_vert,
+                                        color: Colors.white,
+                                        size: 20,
                                       ),
-                                    )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                    ),
+                                  )
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),

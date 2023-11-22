@@ -47,7 +47,7 @@ class _CategoryState extends State<Category> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10, top: 10),
                     child: Container(
-                      height: 285,
+                      height: 290,
                       child: CarouselSlider.builder(
                           //  key: _sliderKey,
                           enableAutoSlider: true,
@@ -193,7 +193,7 @@ class _CategoryState extends State<Category> {
                             vertical: 10, horizontal: 5),
                         child: Container(
                           width: double.infinity,
-                          height: 160,
+                          height: 170,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color: Color(0xff1E1E1E)),
@@ -218,7 +218,7 @@ class _CategoryState extends State<Category> {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          color: Colors.indigo,
+                                          color: Color(0xff1E1E1E),
                                         ),
                                         child: ClipRRect(
                                             borderRadius: BorderRadius.all(
@@ -289,7 +289,7 @@ class _CategoryState extends State<Category> {
                                                       HomeProvider
                                                               .responsedata
                                                               ?.articles?[index]
-                                                              .description
+                                                              .title
                                                               .toString() ??
                                                           "no data",
                                                       style: TextStyle(
@@ -312,7 +312,7 @@ class _CategoryState extends State<Category> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 70),
+                                      padding: const EdgeInsets.only(right: 60),
                                       child: Text(
                                         HomeProvider.responsedata
                                                 ?.articles?[index].publishedAt

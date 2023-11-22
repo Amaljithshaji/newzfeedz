@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newzfeedz/controller/Controller.dart';
 import 'package:provider/provider.dart';
 
-import 'view/bottomNavigation/bottomNavigator.dart';
+//import 'view/bottomNavigation/bottomNavigator.dart';
 import 'view/splash/splash.dart';
 //import 'view/Home/homescreen.dart';
 
