@@ -118,7 +118,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                   child: Container(
                     width: double.infinity,
-                    height: 170,
+                    height: 180,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Color(0xff1E1E1E)),
@@ -146,7 +146,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                         BorderRadius.all(Radius.circular(10)),
                                     child:_Search
                                         .responsedata?.articles?[index].urlToImage
-                                         == null ?   Image.network('https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
+                                         == null ?  Image.asset(
+                                                        'assets/images/nodata.jpg',
                                                    fit: BoxFit.fill,
                             width: double.infinity,
                             height: 300,): Image.network(

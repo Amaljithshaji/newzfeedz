@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newzfeedz/controller/Controller.dart';
-import 'package:newzfeedz/view/Notification/NotificationScreen.dart';
+//import 'package:newzfeedz/view/Notification/NotificationScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -47,7 +47,7 @@ class _SeeAllState extends State<SeeAll> {
             )),
         title: Text(
           'Top News',
-          style: GoogleFonts.aDLaMDisplay(),
+          style: GoogleFonts.aDLaMDisplay(color: Colors.white),
         ),
         actions: [
           InkWell(
@@ -59,15 +59,7 @@ class _SeeAllState extends State<SeeAll> {
                     ));
               },
               child: Image.asset("assets/images/Icons (1).png")),
-          InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NotifScreen(),
-                    ));
-              },
-              child: Image.asset("assets/images/Icons.png")),
+         
           SizedBox(
             width: 10,
           ),
@@ -106,7 +98,7 @@ class _SeeAllState extends State<SeeAll> {
                                   vertical: 10, horizontal: 5),
                               child: Container(
                                 width: double.infinity,
-                                height: 160,
+                                height: 170,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                     color: Color(0xff1E1E1E)),
@@ -144,8 +136,8 @@ class _SeeAllState extends State<SeeAll> {
                                                             ?.articles?[index]
                                                             .urlToImage ==
                                                         null
-                                                    ? Image.network(
-                                                        'https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
+                                                    ? Image.asset(
+                                                        'assets/images/nodata.jpg',
                                                         fit: BoxFit.fill,
                                                         width: double.infinity,
                                                         height: 300,

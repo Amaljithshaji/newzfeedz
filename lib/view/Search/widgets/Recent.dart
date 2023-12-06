@@ -53,7 +53,8 @@ class _RecentNewState extends State<RecentNew> {
                       borderRadius: BorderRadius.circular(7),
                       child:_Search_Controller
                                         .responsedata?.articles?[index].urlToImage
-                                         == null ?  Image.network('https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
+                                         == null ? Image.asset(
+                                                        'assets/images/nodata.jpg',
                                fit: BoxFit.fill,
                                 width: double.infinity,
                                 height: 300,):

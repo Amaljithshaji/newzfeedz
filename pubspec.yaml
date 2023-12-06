@@ -39,7 +39,6 @@ dependencies:
   overlapped_carousel: ^1.0.1
   flutter_carousel_slider: ^1.1.0
   floating_frosted_bottom_bar: ^0.0.1
-  hidable: ^1.0.6
   provider: ^6.0.5
   share: ^2.0.4
   url_launcher: ^6.2.1

@@ -248,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             context: context,
                             builder: (context) => Container(
                               width: 330,
-                              height: 430,
+                              height: 435,
                               color: Colors.black,
                               child: Column(children: [
                                 Container(

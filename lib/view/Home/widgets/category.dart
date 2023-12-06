@@ -63,8 +63,8 @@ class _CategoryState extends State<Category> {
                                     child: HomeProvider.responsedata
                                                 ?.articles?[index].urlToImage ==
                                             null
-                                        ? Image.network(
-                                            'https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
+                                        ? Image.asset(
+                                            'assets/images/nodata.jpg',
                                             fit: BoxFit.fill,
                                             width: double.infinity,
                                             height: 300,
@@ -172,9 +172,10 @@ class _CategoryState extends State<Category> {
                         child: Text(
                           'See all',
                           style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400),
+                            color: Colors.grey,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       )
                     ],
@@ -228,8 +229,8 @@ class _CategoryState extends State<Category> {
                                                         ?.articles?[index]
                                                         .urlToImage ==
                                                     null
-                                                ? Image.network(
-                                                    'https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg',
+                                                ? Image.asset(
+                                                    'assets/images/nodata.jpg',
                                                     fit: BoxFit.fill,
                                                     width: double.infinity,
                                                     height: 300,
@@ -330,9 +331,10 @@ class _CategoryState extends State<Category> {
                                         elevation: 0,
                                         iconEnabledColor: Colors.black,
                                         focusColor: Colors.black,
-                                        dropdownColor: Color.fromARGB(255, 21, 21, 21),
-                                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        
+                                        dropdownColor:
+                                            Color.fromARGB(255, 21, 21, 21),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
                                         enableFeedback: true,
                                         items: [
                                           DropdownMenuItem<String>(
@@ -349,7 +351,11 @@ class _CategoryState extends State<Category> {
                                                     mode: LaunchMode
                                                         .inAppWebView);
                                               },
-                                              child: Text('Read more', style: TextStyle(color: Colors.white),),
+                                              child: Text(
+                                                'Read more',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
                                             ),
                                             value: 'read more',
                                           ),
@@ -363,7 +369,11 @@ class _CategoryState extends State<Category> {
                                                         .toString() ??
                                                     "www.google.com");
                                               },
-                                              child: Text('Share', style: TextStyle(color: Colors.white),),
+                                              child: Text(
+                                                'Share',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
                                             ),
                                             value: 'Share',
                                           )
