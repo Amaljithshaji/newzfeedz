@@ -1,4 +1,4 @@
-package com.example.newzfeedz
+package com.luminar.newzfeedz
 
 import io.flutter.embedding.android.FlutterActivity
 

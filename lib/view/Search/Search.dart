@@ -52,7 +52,7 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               SizedBox(height: 70,),
               Container(
-                width: 380,
+                width: MediaQuery.of(context).size.width*0.9,
                 height: 60,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -133,6 +133,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             builder: (context) => DetailScreen(itemIndex: index,),
                           )),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Container(
                                   width: 100,
@@ -159,9 +160,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 10,
-                                ),
+                                
                                 Padding(
                                   padding:
                                       const EdgeInsets.only(top: 10, right: 10),
@@ -180,7 +179,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         height: 10,
                                       ),
                                       Container(
-                                        width: 230,
+                                        width: MediaQuery.of(context).size.width * 0.5,
                                         height: 80,
                                         // color: Colors.amber,
                                         child:_Search
@@ -206,21 +205,18 @@ class _SearchScreenState extends State<SearchScreen> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 70),
-                                child: Text(
-                                  _Search.responsedata
-                                                ?.articles?[index].publishedAt
-                                                .toString() ??
-                                            "no data",
-                                 
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400),
-                                ),
+                              Text(
+                                _Search.responsedata
+                                              ?.articles?[index].publishedAt
+                                              .toString() ??
+                                          "no data",
+                               
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
                               ),
                               
                               DropdownButtonHideUnderline(

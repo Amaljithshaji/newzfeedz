@@ -119,6 +119,7 @@ class _SeeAllState extends State<SeeAll> {
                                               ));
                                         },
                                         child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                                           children: [
                                             Container(
                                               width: 100,
@@ -154,9 +155,7 @@ class _SeeAllState extends State<SeeAll> {
                                                       ),
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
+                                            
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   top: 10, right: 10),
@@ -180,7 +179,7 @@ class _SeeAllState extends State<SeeAll> {
                                                     height: 10,
                                                   ),
                                                   Container(
-                                                    width: 230,
+                                                   width: MediaQuery.of(context).size.width * 0.5,
                                                     height: 70,
                                                     // color: Colors.amber,
                                                     child: Text(
@@ -208,24 +207,20 @@ class _SeeAllState extends State<SeeAll> {
                                       padding: const EdgeInsets.only(left: 20),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.spaceAround,
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 80),
-                                            child: Text(
-                                              see_all
-                                                      .responsedata
-                                                      ?.articles?[index]
-                                                      .publishedAt
-                                                      ?.toLocal()
-                                                      .toString() ??
-                                                  "date",
-                                              style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
+                                          Text(
+                                            see_all
+                                                    .responsedata
+                                                    ?.articles?[index]
+                                                    .publishedAt
+                                                    ?.toLocal()
+                                                    .toString() ??
+                                                "date",
+                                            style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400),
                                           ),
                                           DropdownButtonHideUnderline(
                                             child: DropdownButton(

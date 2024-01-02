@@ -244,10 +244,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: InkWell(
                         onTap: () {
-                          showBottomSheet(
+                          showModalBottomSheet(
+
                             context: context,
                             builder: (context) => Container(
-                              width: 330,
+                              width: MediaQuery.of(context).size.width * 0.9,
                               height: 435,
                               color: Colors.black,
                               child: Column(children: [
@@ -271,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 5),
                                   child: Container(
-                                      width: 350,
+                                      width: MediaQuery.of(context).size.width * 0.9,
                                       height: 389,
                                       child: SingleChildScrollView(
                                         child: Column(

@@ -212,6 +212,7 @@ class _CategoryState extends State<Category> {
                                         ),
                                       )),
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
                                       Container(
                                         width: 100,
@@ -247,9 +248,7 @@ class _CategoryState extends State<Category> {
                                                     height: 300,
                                                   )),
                                       ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
+                                     
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             top: 10, right: 10),
@@ -273,9 +272,9 @@ class _CategoryState extends State<Category> {
                                               height: 10,
                                             ),
                                             Container(
-                                              width: 230,
+                                              width: MediaQuery.of(context).size.width * 0.5,
                                               height: 70,
-                                              // color: Colors.amber,
+                                            //  color: Colors.amber,
                                               child: HomeProvider
                                                           .responsedata
                                                           ?.articles?[index]
@@ -308,22 +307,20 @@ class _CategoryState extends State<Category> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 20),
+                                padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 60),
-                                      child: Text(
-                                        HomeProvider.responsedata
-                                                ?.articles?[index].publishedAt
-                                                .toString() ??
-                                            "date",
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
+                                    Text(
+                                      HomeProvider.responsedata
+                                              ?.articles?[index].publishedAt
+                                              .toString() ??
+                                          "date",
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400),
                                     ),
                                     DropdownButtonHideUnderline(
                                       child: DropdownButton(
